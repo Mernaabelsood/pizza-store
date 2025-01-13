@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import CreateUser from '../features/user/CreateUser';
 import Button from './Button';
+import pizzaImage from '../assests/pizza.jpg';
 
 function Home() {
   const username = useSelector((state) => state.user.username);
@@ -9,7 +10,7 @@ function Home() {
     <div
       className=" flex items-center justify-center pt-24 text-center"
       style={{
-        backgroundImage: 'url(/src/assests/pizza.jpg)',
+        backgroundImage: `url(${pizzaImage})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         height: '100vh',
