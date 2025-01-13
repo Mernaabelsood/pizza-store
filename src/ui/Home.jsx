@@ -14,7 +14,7 @@ function Home() {
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         height: '100vh',
-        opacity: 0.8,
+        opacity: 0.7,
       }}
     >
       <div>
