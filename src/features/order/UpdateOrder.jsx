@@ -1,13 +1,15 @@
 import { useFetcher } from 'react-router-dom';
 import Button from '../../ui/Button';
 import { updateOrder } from '../../services/apiRestaurant';
+import { useTranslation } from 'react-i18next';
 
 function UpdateOrder({ order }) {
   const fetcher = useFetcher();
+  const { t } = useTranslation();
 
   return (
     <fetcher.Form method="PATCH" className="text-right">
-      <Button type="primary">Make priority</Button>
+      <Button type="primary">{t('makePriority')}</Button>
     </fetcher.Form>
   );
 }

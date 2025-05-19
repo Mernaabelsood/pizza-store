@@ -2,9 +2,11 @@ import { useSelector } from 'react-redux';
 import CreateUser from '../features/user/CreateUser';
 import Button from './Button';
 import pizzaImage from '../assests/pizza.jpg';
+import { useTranslation } from 'react-i18next';
 
 function Home() {
   const username = useSelector((state) => state.user.username);
+  const { t } = useTranslation();
 
   return (
     <div
@@ -20,11 +22,7 @@ function Home() {
       <div>
         <div>
           <h1 className="mb-8 text-xl font-semibold text-black md:text-3xl">
-            The best pizza.
-            <br />
-            <span className="text-black">
-              Straight out of the oven, straight to you.
-            </span>
+            {t('welcome', 'Welcome to Fast React Pizza Co.')}
           </h1>
         </div>
 

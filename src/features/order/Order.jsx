@@ -1,5 +1,6 @@
 // Test ID: IIDSAT
 import { useFetcher, useLoaderData } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 import OrderItem from './OrderItem';
 
@@ -15,6 +16,7 @@ import UpdateOrder from './UpdateOrder';
 function Order() {
   const order = useLoaderData();
   const fetcher = useFetcher();
+  const { t } = useTranslation();
 
   useEffect(
     function () {
@@ -39,16 +41,16 @@ function Order() {
   return (
     <div className="space-y-8 px-4 py-6">
       <div className="flex flex-wrap items-center justify-between gap-2">
-        <h2 className="text-xl font-semibold">Order #{id} status</h2>
+        <h2 className="text-xl font-semibold">{t('orderStatus', { id })}</h2>
 
         <div className="space-x-2">
           {priority && (
             <span className="rounded-full bg-red-500 px-3 py-1 text-sm font-semibold uppercase tracking-wide text-red-50">
-              Priority
+              {t('priority')}
             </span>
           )}
           <span className="rounded-full bg-green-500 px-3 py-1 text-sm font-semibold uppercase tracking-wide text-green-50">
-            {status} order
+            {t('order', { status })}
           </span>
         </div>
       </div>
@@ -56,11 +58,11 @@ function Order() {
       <div className="flex flex-wrap items-center justify-between gap-2 bg-stone-200 px-6 py-5">
         <p className="font-medium">
           {deliveryIn >= 0
-            ? `Only ${calcMinutesLeft(estimatedDelivery)} minutes left 😃`
-            : 'Order should have arrived'}
+            ? t('onlyMinutesLeft', { minutes: deliveryIn })
+            : t('orderShouldHaveArrived')}
         </p>
         <p className="text-xs text-stone-500">
-          (Estimated delivery: {formatDate(estimatedDelivery)})
+          {t('estimatedDelivery', { date: formatDate(estimatedDelivery) })}
         </p>
       </div>
 
@@ -80,15 +82,17 @@ function Order() {
 
       <div className="space-y-2 bg-stone-200 px-6 py-5">
         <p className="text-sm font-medium text-stone-600">
-          Price pizza: {formatCurrency(orderPrice)}
+          {t('pricePizza', { price: formatCurrency(orderPrice) })}
         </p>
         {priority && (
           <p className="text-sm font-medium text-stone-600">
-            Price priority: {formatCurrency(priorityPrice)}
+            {t('pricePriority', { price: formatCurrency(priorityPrice) })}
           </p>
         )}
         <p className="font-bold">
-          To pay on delivery: {formatCurrency(orderPrice + priorityPrice)}
+          {t('toPayOnDelivery', {
+            price: formatCurrency(orderPrice + priorityPrice),
+          })}
         </p>
       </div>
 

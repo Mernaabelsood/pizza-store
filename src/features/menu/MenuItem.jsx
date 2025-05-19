@@ -4,9 +4,11 @@ import DeleteItem from '../cart/DeleteItem';
 import UpdateItemQuantity from '../cart/UpdateItemQuantity';
 import { formatCurrency } from '../../utils/helpers';
 import { addItem, getCurrentQuantityById } from '../cart/cartSlice';
+import { useTranslation } from 'react-i18next';
 
 function MenuItem({ pizza }) {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const { id, name, unitPrice, ingredients, soldOut, imageUrl } = pizza;
 
@@ -41,7 +43,7 @@ function MenuItem({ pizza }) {
             <p className="text-sm">{formatCurrency(unitPrice)}</p>
           ) : (
             <p className="text-sm font-medium uppercase text-stone-500">
-              Sold out
+              {t('soldOut')}
             </p>
           )}
 
@@ -57,7 +59,7 @@ function MenuItem({ pizza }) {
 
           {!soldOut && !isInCart && (
             <Button type="small" onClick={handleAddToCart}>
-              Add to cart
+              {t('addToCart')}
             </Button>
           )}
         </div>
